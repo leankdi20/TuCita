@@ -1,0 +1,23 @@
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Pycache y archivos compilados
+__pycache__/
+*.py[cod]
+
+# Archivos de base de datos y binlogs
+*.db
+*.sqlite3
+*.log
+*.pid
+database/lib/
+
+# Node modules
+node_modules/
+dist/
+build/
