@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import sys
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -17,10 +17,13 @@ load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(str(BASE_DIR))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+# Esto es para loguearse con el modelo de usuario personalizado
+AUTH_USER_MODEL = 'core.Usuario'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-3%51&p!=xt07p9g6rs3@m22e3!3cr!z7t@9okmjfwuk$2h(n@r'
@@ -40,12 +43,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core',
     'api_tucita',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
+    "drf_spectacular",
+    "drf_spectacular_sidecar",
+    
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -55,6 +64,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
 
 ROOT_URLCONF = 'app.urls'
 
@@ -82,14 +102,15 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('MYSQL_DATABASE', 'app_tucita'),
-        'USER': os.getenv('MYSQL_USER', 'lean'),
-        'PASSWORD': os.getenv('MYSQL_PASSWORD', 'mysql1223'),
-        'HOST': os.getenv('DB_HOST', 'db'),
-        'PORT': os.getenv('MYSQL_PORT', '3306'),
+        'HOST': os.environ.get('DB_HOST', 'db'),
+        'NAME': os.environ.get('DB_NAME', 'app_tucita'),
+        'USER': os.environ.get('DB_USER', 'root'),
+        'PASSWORD': os.environ.get('DB_PASS', 'mysql1223'),
+        'OPTIONS': {
+                    'charset': 'utf8mb4',
+                    'use_unicode': True, },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -125,7 +146,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -136,3 +159,29 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'TuCita API',
+    'DESCRIPTION': 'Documentación de la API de gestión de citas',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_SETTINGS': {
+        'persistAuthorization': True,
+    },
+    'COMPONENT_SPLIT_REQUEST': True,
+    'AUTHENTICATION_WHITELIST': [],
+    'SECURITY': [{
+        'tokenAuth': []
+    }],
+    'COMPONENTS': {
+        'securitySchemes': {
+            'tokenAuth': {
+                'type': 'http',
+                'scheme': 'bearer',
+                'bearerFormat': 'Token'
+            }
+        }
+    }
+}

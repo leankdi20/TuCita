@@ -4,19 +4,26 @@ FROM python:3.9
 # Establece el directorio de trabajo
 WORKDIR /app
 
+# Instala dependencias del sistema necesarias
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    netcat-openbsd \
+    build-essential \
+    libpq-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+    
+# Copia requirements primero para aprovechar la cache
+COPY requirements.txt requirements.txt
+
+# Instala dependencias de Python antes de copiar todo el código
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 # Copia los archivos del backend
 COPY . .
 
 # ✅ Instala netcat para usar el comando `nc`
 RUN apt-get update && apt-get install -y netcat-openbsd
 
-
-# Da permisos al script si vas a usarlo (opcional si volvés a usar wait-for-db.sh)
-# RUN chmod +x wait-for-db.sh
-
-# Instala las dependencias de Python
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
 
 EXPOSE 8000
 

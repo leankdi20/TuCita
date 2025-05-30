@@ -1,4 +1,4 @@
-version: "3.9"
+
 
 services:
     db:
@@ -21,11 +21,12 @@ services:
         - 8000:8000
       volumes:
         - ./backend:/app
+      env_file:
+        - .env
       command: >
         sh -c "while ! nc -z db 3306; do sleep 1; done &&
               python manage.py migrate &&
               gunicorn --bind 0.0.0.0:8000 --limit-request-line 8190 app.wsgi"
-
       environment:
         - DJANGO_SETTINGS_MODULE=app.settings
         - DEBUG=0
