@@ -33,3 +33,37 @@
   background: linear-gradient(to bottom, #042b18, #1a8352);
   color: white;
 }
+.text-start{
+  text-align: start;
+}
+/* Card de notas rapidas */
+.card-body small {
+  font-size: 0.8rem;
+}
+
+.card-body img {
+  margin-top: 3px;
+}
+
+/* Cards de citas semanales */
+.tamano-numero{
+  font-size: 5rem;
+}
+.tamano-titulo{
+  font-size: 1.8rem;
+  
+}
+/* Estilo de la tabla Ultimos pacientes atendidos */
+.table-transparent {
+  background-color: transparent !important;
+}
+
+.table-transparent thead,
+.table-transparent tbody,
+.table-transparent tr,
+.table-transparent th,
+.table-transparent td {
+  background-color: transparent !important;
+}
+
+/* Estilo  */
