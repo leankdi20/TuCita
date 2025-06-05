@@ -156,7 +156,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:5173",
 ]
 
 MEDIA_URL = '/media/'
@@ -171,17 +171,15 @@ SPECTACULAR_SETTINGS = {
         'persistAuthorization': True,
     },
     'COMPONENT_SPLIT_REQUEST': True,
-    'AUTHENTICATION_WHITELIST': [],
-    'SECURITY': [{
-        'tokenAuth': []
-    }],
+    'SECURITY': [{'TokenAuth': []}],
     'COMPONENTS': {
         'securitySchemes': {
-            'tokenAuth': {
-                'type': 'http',
-                'scheme': 'bearer',
-                'bearerFormat': 'Token'
-            }
+            'TokenAuth': {
+                'type': 'apiKey',
+                'in': 'header',
+                'name': 'Authorization',
+                'description': 'Token authentication. Use "Token &lt;your_token&gt;"',
+            },
         }
-    }
+    },
 }

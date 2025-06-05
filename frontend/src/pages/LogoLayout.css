@@ -1,0 +1,74 @@
+.nav-icon {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  object-fit: contain;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+    
+  padding: 5px 0;
+  padding-left: 2rem;
+  position: relative;
+  font-size: 0.95rem;
+  color: #333;
+  cursor: pointer;
+}
+.nav-links {
+  display: flex;
+  flex-direction: column;
+}
+.nav-item a {
+  text-decoration: none;
+  color: inherit;
+}
+.title-menu {
+    text-align: left; 
+    width: 100%;      
+    padding-left: 10px;
+    color: #777777;
+}
+.img-cita {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 20px; /* o el valor que prefieras */
+    height: 80px; /* opcional, o auto */
+    width: 100%;   /* ocupa todo el ancho disponible del sidebar */
+    box-sizing: border-box;
+}
+.logo {
+    display: block;
+    width: 120px;
+    margin-left: 20px; /* alinea a la izquierda */
+}
+
+.nav-indicator {
+  width: 16px;
+  height: 100%;
+  background-color: transparent;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.nav-item.active .nav-indicator {
+  background-color: #1f7037;
+}
+
+.btn-cierre-sesion {
+  margin-top: auto;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 90%;
+  background-color: #1f7037;
+  color: #dadada;
+  border-radius: 10px;
+}

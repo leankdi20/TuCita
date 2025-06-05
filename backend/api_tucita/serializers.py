@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Paciente, Profesional, Cita, Diagnostico
+from .models import Paciente, Profesional, Cita, Diagnostico, Archivo
 from core.serializers import UsuarioSerializer
 
 
@@ -13,7 +13,7 @@ class ProfesionalSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profesional
-        fields = ['id', 'usuario', 'telefono', 'foto']
+        fields = ['usuario', 'telefono', 'foto']
 
 class CitaSerializer(serializers.ModelSerializer):
     paciente = PacienteSerializer()
@@ -28,5 +28,12 @@ class DiagnosticoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Diagnostico
+        fields = '__all__'
+        
+class ArchivoSerializer(serializers.ModelSerializer):
+    diagnostico = DiagnosticoSerializer()
+
+    class Meta:
+        model = Archivo
         fields = '__all__'
 

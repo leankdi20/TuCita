@@ -1,0 +1,133 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #f5f5ef, #fdecb0);
+  border-radius: 20px;
+}
+.main-content {
+  padding-top: 1.5rem; /* o margin-top, si lo prefieres */
+}
+
+/* Layout principal */
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    margin-top: 1%;
+    margin-left: 1%;
+    width: 220px;
+    background-color: #fffef6;
+    opacity: 0.9;
+    height: 91.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1rem;
+    border: 1px solid #d0e8db;
+}
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #fffef6;
+    border-bottom: 1px solid #d0e8db;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1%;
+    border-radius: 1rem;
+    border: 1px solid #d0e8db;
+}
+/* Contenido */
+.content {
+    flex: 1;
+    padding: 1%;
+    background-color: #fffef6; /* ligeramente más claro para destacar */
+    border-radius: 1rem;
+    border: 1px solid #d0e8db;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06); /* sombra suave */
+    box-sizing: border-box;
+    opacity: 0.9;
+    max-height: 80.7%; 
+    overflow-y: auto;
+}
+
+
+
+.logo {
+  width: 100px;
+  margin-bottom: 40px;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #2b3d3b;
+  font-weight: 500;
+  padding-left: 5px;
+}
+
+/* Área derecha: header + contenido */
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  padding:1%;
+}
+
+
+
+.search-input {
+  padding: 12px 20px;
+  border-radius: 20px;
+  border: none;
+  width: 300px;
+  font-size: 1rem;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+/* Info usuario */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d0e8db;
+}
+
+
+/* Login mensaje de error de credenciales*/
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 48%;
+}

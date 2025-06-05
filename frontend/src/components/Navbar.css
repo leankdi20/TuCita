@@ -1,0 +1,16 @@
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* esto es el espacio entre el ícono y el texto */
+}
+
+.user-info div {
+    margin-top: 6%;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2; /* reduce el espacio vertical entre nombre y correo */
+}
+
+.user-info p {
+    color: rgb(150, 149, 149);
+}

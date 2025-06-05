@@ -1,0 +1,35 @@
+.card-gradient-verde {
+  background: linear-gradient(to bottom, #0a5732, #6dd1a3);
+  color: white;
+}
+
+.color-fondo-card-amarillo {
+  background: linear-gradient(to bottom, #fcd462, #ffe89e);
+  color: #333; /* o blanco, según contraste */
+}
+
+.color-texto-negro-bold span,
+.color-texto-negro-bold h1 {
+  color: #333;
+  font-weight: bold;
+}
+.color-texto-verde p{
+    color: #3b9724;
+    font-weight: bold;
+}
+
+/* Segunda y tercera fila */
+.card-doble-altura {
+    min-height: 100%; /* necesario para compatibilidad */
+    height: 100%;
+    min-height: 460p/* este valor puede ajustarse según tu diseño */
+}
+
+.card-altura-terceracard{
+    height: 23% ;
+}
+
+.card-gradient-verde-oscuro {
+  background: linear-gradient(to bottom, #042b18, #1a8352);
+  color: white;
+}

@@ -7,3 +7,4 @@ django-cors-headers
 Pillow>=11.2.1
 whitenoise==6.2.0
 drf-spectacular[sidecar]
+requests >=2.32.3

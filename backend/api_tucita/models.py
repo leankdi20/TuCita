@@ -40,8 +40,8 @@ class Profesional(models.Model):
         return f"{self.usuario.nombre} {self.usuario.apellido}"
     
 class Cita(models.Model):
-    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
-    profesional = models.ForeignKey(Profesional, on_delete=models.CASCADE)
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE ,related_name="citas")
+    profesional = models.ForeignKey(Profesional, on_delete=models.CASCADE, related_name="citas")
     fecha = models.DateTimeField()
     hora_inicio = models.TimeField()
     hora_fin = models.TimeField()
@@ -64,6 +64,13 @@ class Diagnostico(models.Model):
     descripcion = models.TextField()
     tratamiento_recomendado = models.TextField(blank=True, null=True)
     fecha_diagnostico = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f"Diagnóstico para {self.cita.paciente} en {self.cita.fecha.strftime('%d-%m-%Y')}"
+    
+class Archivo(models.Model):
+    diagnostico = models.ForeignKey(Diagnostico, on_delete=models.CASCADE, related_name='archivos')
     archivo_adjunto = models.FileField(
         upload_to='archivos_diagnosticos/', 
         blank=True, 
@@ -71,5 +78,4 @@ class Diagnostico(models.Model):
     )
 
     def __str__(self):
-        return f"Diagnóstico para {self.cita.paciente} en {self.cita.fecha.strftime('%d-%m-%Y')}"
-    
+        return f"Archivo para diagnóstico {self.diagnostico.id}"
