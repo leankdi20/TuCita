@@ -29,7 +29,7 @@ def get_usuarios():
 def agregar_dato():
     try:
         # Paso 1: Obtener el usuario
-        usuario = Usuario.objects.get(id=1)
+        usuario = Usuario.objects.get(id=2)
 
         # Paso 2: Crear profesional (si no existe)
         profesional, creado = Profesional.objects.get_or_create(
@@ -39,15 +39,15 @@ def agregar_dato():
 
         # Paso 3: Crear paciente
         paciente = Paciente.objects.create(
-            nombre='Ana',
-            apellido='López',
-            edad=30,
-            correo='ana.lopez@example.com',
-            telefono='88776655',
-            cedula='123456789',
-            alergias='Penicilina',
-            enfermedades_previas='Asma',
-            observaciones_clinicas='Paciente con historial de crisis asmáticas.'
+            nombre='Maria  ',
+            apellido='Llamas',
+            edad=34,
+            correo='maria.llamas@example.com',
+            telefono='6665874',
+            cedula='11474422',
+            alergias='Amoxicilina',
+            enfermedades_previas='Diabetes',
+            observaciones_clinicas='Padecientes de diabetes.'
         )
 
         # Paso 4: Crear cita
@@ -55,10 +55,10 @@ def agregar_dato():
             paciente=paciente,
             profesional=profesional,
             fecha=timezone.now(),
-            hora_inicio=time(9, 0),
-            hora_fin=time(9, 30),
-            motivo_consulta='Dolor en muela',
-            observaciones='Requiere evaluación de endodoncia.',
+            hora_inicio=time(10, 0),
+            hora_fin=time(10, 30),
+            motivo_consulta='Extracción de molar',
+            observaciones='Extracción en pieza 12.',
             estado='confirmada',
             enviar_recordatorio=True
         )
@@ -66,8 +66,8 @@ def agregar_dato():
         # Paso 5: Crear diagnóstico
         diagnostico = Diagnostico.objects.create(
             cita=cita,
-            descripcion='Caries profunda en molar inferior derecho.',
-            tratamiento_recomendado='Realizar endodoncia y colocar corona.'
+            descripcion='',
+            tratamiento_recomendado=''
         )
 
         # Paso 6: Asociar archivo (mock - solo ruta, sin archivo real)
@@ -79,6 +79,6 @@ def agregar_dato():
         print("✅ Datos agregados correctamente.")
 
     except Usuario.DoesNotExist:
-        print("❌ Usuario con ID 1 no encontrado.")
+        print("❌ Usuario con ID 2 no encontrado.")
     except Exception as e:
         print(f"⚠️ Error: {e}")

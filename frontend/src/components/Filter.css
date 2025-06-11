@@ -1,0 +1,94 @@
+.filter-container {
+    width: 260px; /* ancho fijo */
+    flex-shrink: 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky; /* opcional, para que quede fijo si hacés scroll */
+    margin-top: 20%; /* opcional */
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+.filter-header {
+    padding: 10px;
+    background-color: #f5f5f5;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+    user-select: none;
+}
+
+.filter-content {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.filter-section {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.filter-section strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.filter-section label {
+    margin-left: 5px;
+    font-weight: normal;
+}
+
+.filter-section select {
+    width: 100%;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.filter-buttons button {
+    background-color: #2c8f4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.filter-buttons button:last-child {
+    background-color: #cccccc;
+    color: #333;
+}
+/* Leyenda de citas */
+.filter-leyenda {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+    font-size: 14px;
+    color: #333;
+}
+
+.leyenda-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.leyenda-color {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border-radius: 3px;
+    margin-right: 8px;
+    border: 1px solid #999;
+}

@@ -1,0 +1,110 @@
+.contenedor-calendario {
+  height: 93%;
+  width: 100%;
+  margin-left: auto;
+  /* position: relative; */
+  overflow: visible;
+}
+
+
+/* popup para detalles de cita */
+.tooltip-personalizado {
+    background-color: #f8f9fa;
+    color: #212529;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    max-width: 240px;
+}
+
+.evento-calendario {
+  
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    font-weight: bold;
+    font-size: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.rbc-event-content {
+    display: flex;
+}
+
+.evento-calendario p{
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.rbc-event {
+    box-sizing: border-box;
+    padding: 2px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 4px; /* DA un efecto visual de separación */
+    z-index: 1;
+}
+
+
+.rbc-event-content {
+    white-space: normal; /* para que el texto baje si no cabe */
+    text-overflow: clip;
+    overflow: visible;
+    font-weight: bold;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* que el texto no se centre, así es más legible */
+    padding: 2px;
+}
+
+.custom-tooltip {
+  position: absolute;
+  top: -100px; /* Probar con diferentes valores */
+  left: 0;
+  background-color: #fff;
+  color: #212529;
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  z-index: 9999;
+  white-space: nowrap;
+  pointer-events: none;
+
+}
+
+.custom-tooltip {
+  position: absolute;
+  top: -100px;
+  left: 50%;                 /* Centramos horizontalmente */
+  transform: translateX(-50%); /* Ajuste fino para que quede centrado */
+  background-color: #fff;
+  color: #212529;
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  z-index: 9999;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.full-event {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.rbc-event-label {
+  display: none !important;
+}

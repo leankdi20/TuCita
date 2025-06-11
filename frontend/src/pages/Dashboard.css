@@ -58,7 +58,8 @@ html, body {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06); /* sombra suave */
     box-sizing: border-box;
     opacity: 0.9;
-    max-height: 80.7%; 
+    height: 99%;
+    max-height: 100%; 
     overflow-y: auto;
 }
 

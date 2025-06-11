@@ -39,6 +39,16 @@ class Profesional(models.Model):
     def __str__(self):
         return f"{self.usuario.nombre} {self.usuario.apellido}"
     
+# arriba del modelo
+ESTADO_CHOICES = [
+    ('pendiente', 'Pendiente'),
+    ('confirmada', 'Confirmada'),
+    ('cancelada', 'Cancelada'),
+    ('no_asistida', 'No asistida'),
+    ('completada', 'Completada')
+]
+
+    
 class Cita(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE ,related_name="citas")
     profesional = models.ForeignKey(Profesional, on_delete=models.CASCADE, related_name="citas")
@@ -47,13 +57,7 @@ class Cita(models.Model):
     hora_fin = models.TimeField()
     motivo_consulta = models.TextField(blank=True, null=True)
     observaciones = models.TextField(blank=True, null=True)
-    estado = models.CharField(max_length=20, choices=[
-        ('pendiente', 'Pendiente'),
-        ('confirmada', 'Confirmada'),
-        ('cancelada', 'Cancelada'),
-        ('no_asistida', 'No asistida'),
-        ('completada', 'Completada')
-    ], default='pendiente')
+    estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='pendiente')
     enviar_recordatorio = models.BooleanField(default=False)
 
     def __str__(self):

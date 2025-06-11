@@ -1,8 +1,10 @@
 from rest_framework import viewsets
 from .models import Paciente, Profesional, Cita, Diagnostico, Archivo
-from .serializers import PacienteSerializer, ProfesionalSerializer, CitaSerializer, DiagnosticoSerializer, ArchivoSerializer
+from .serializers import PacienteSerializer, ProfesionalSerializer,ProfesionalCreateSerializer, CitaSerializer,CitaCreateSerializer, DiagnosticoSerializer, ArchivoSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import CitaFilter
 
 
 
@@ -20,16 +22,26 @@ class ProfesionalViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
 
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'partial_update']:
+            return ProfesionalCreateSerializer
+        return ProfesionalSerializer
+
+
 
 class CitaViewSet(viewsets.ModelViewSet):
     queryset = Cita.objects.select_related('paciente', 'profesional').all()
-    serializer_class = CitaSerializer
     permission_classes = [IsAuthenticated]
     authentication_classes = [TokenAuthentication]
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = CitaFilter 
+    
 
-    def perform_create(self, serializer):
-        profesional = Profesional.objects.get(usuario=self.request.user)
-        serializer.save(profesional=profesional)
+    def get_serializer_class(self):
+        if self.action in ['create', 'update', 'partial_update']:
+            return CitaCreateSerializer  # En POST usás solo IDs
+        return CitaSerializer  
+
 
     
         

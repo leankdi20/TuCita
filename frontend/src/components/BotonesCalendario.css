@@ -1,0 +1,107 @@
+/* Fondo superpuesto (oscurecido) */
+.form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.3);  /* leve oscurecimiento */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.form-panel {
+    position: relative;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 600px; /* Un ancho razonable */
+    margin-bottom: 20px;
+    margin-left: 20%;
+}
+
+.form-panel form {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Label - input */
+    gap: 12px 20px;
+    align-items: center;
+}
+
+.form-panel form label {
+    font-weight: bold;
+    color: #333;
+    justify-self: end;
+}
+
+.form-panel form input,
+.form-panel form select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-panel form button {
+    grid-column: span 2;
+    padding: 10px 20px;
+    background-color: #126d34;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.form-panel button:hover {
+    background-color: #1dc259;
+}
+
+.form-panel form button:hover {
+    background-color: #1dc259;
+}
+.botones-contenedor {
+    display: flex;
+    gap: 10px; /* separación entre botones */
+    justify-content: flex-end; /* los alinea a la derecha */
+    margin-bottom: 10px;
+}
+
+.boton-crear-cita {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #126d34;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.boton-crear-cita:hover {
+    background-color: #1dc259;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #555;
+    text-align: center;
+    border-radius: 20%;
+    
+    line-height: 32px;
+    transition: background-color 0.2s ease;
+}
+
+.close-button:hover {
+    background-color: #e0e0e0;
+    color: #000;
+}

@@ -9,6 +9,8 @@ import DashboardLayout from './Layouts/DashboardLayout';
 import Calendario from './pages/Calendario'
 import Equipo from './pages/Equipo'
 import Paciente from './pages/Paciente'
+import AgregarCita from './pages/AgregarCita';
+
 
 
 function App() {
@@ -23,6 +25,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<AnaliticDash />} /> {/* /dashboard */}
           <Route path="calendario" element={<Calendario />} /> 
+          <Route path="/dashboard/calendario/agregar-cita" element={<AgregarCita />} />
           <Route path="equipo" element={<Equipo />} /> 
           <Route path="paciente" element={<Paciente />} /> 
         </Route>

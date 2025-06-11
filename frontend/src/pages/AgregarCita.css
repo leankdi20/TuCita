@@ -1,0 +1,97 @@
+.agregar-cita-container {
+    display: flex;
+    gap: 1%;
+    padding: 1%;
+}
+
+.panel-izquierdo {
+    
+    width: 20%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 1%;
+    font-size: 14px;
+    color: #333;
+    max-height: 600px;  /* el máximo que vos quieras */
+    overflow-y: auto; 
+}
+
+.panel-izquierdo h4 {
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+.panel-izquierdo ul {
+    padding-left: 8%;
+}
+
+.panel-derecho {
+    width: 80%;
+    flex-grow: 1;
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    padding: 1%;
+}
+
+.form-agregar-cita {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fila-form {
+    display: flex;
+    gap: 20px;
+}
+
+.campo-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.campo-form input,
+.campo-form select,
+.campo-form textarea {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.botones-form {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-agregar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-cancelar {
+    background-color: #d8d0c6;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.opcional {
+    color: #999;
+    font-weight: normal;
+}
+
+.recordatorio {
+    margin-top: 15px;
+    font-size: 0.9em;
+}

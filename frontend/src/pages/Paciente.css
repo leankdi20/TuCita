@@ -1,0 +1,190 @@
+.agregar-cita-container {
+    display: flex;
+    gap: 1%;
+    padding: 1%;
+    height: 100%;
+}
+
+
+.panel-izquierdo {
+    
+    width: 20%;
+    height: 100%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 1%;
+    font-size: 14px;
+    color: #333;
+    max-height: 100%;  /* el máximo que vos quieras */
+    overflow-y: auto; 
+}
+.panel-derecho {
+    width: 75%;
+    max-width: 85%;
+    height: 100%;
+    flex-grow: 1;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 1%;
+}
+
+/* layout botones panel derecho */
+.container-btn {
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;  /* para que si no entra en ancho, baje a la siguiente línea */
+    gap: 3%;
+    
+    width: 80%;
+    margin-left: auto;
+}
+.container-btn button {
+    padding: 12px 20px;           /* un poco más de padding horizontal */
+    background-color: #f6e49c;    /* como tu imagen (amarillo suave) */
+    color: #3e7a6e;               /* color de texto como en tu imagen */
+    border: none;
+    border-radius: 10px;          /* redondeado como en tu imagen */
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;                /* 🟢 para que el icono + texto estén alineados */
+    align-items: center;
+    gap: 20px;                     /* espacio entre icono y texto */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.container-btn button:hover {
+    background-color: darkgreen;
+}
+
+/* apartado datos personales */
+.datos-personales{
+    margin-left: 0.8%;
+    width: 99%;
+    height: 30%;
+    max-height: 30%;
+    background-color: #f6e49c;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.datos-personales h4{
+    padding: 10px;
+    border-bottom: 2px solid #e0c973;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+/* Datos Table */
+.datos-personales table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+.datos-personales thead th {
+    background-color: #ecd985;
+    padding: 10px;
+    border-bottom: 2px solid #d6c36d;
+    font-size: 14px;
+    color: #333;
+}
+.datos-personales tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #f0e4b6;
+    font-size: 14px;
+    color: #555;
+}
+.datos-personales tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Citas anteriores */
+
+
+/* 3ra fila con 3 cards */
+
+.row-cards {
+    display: flex;
+    justify-content: space-between;  /* espacio entre ellas */
+    gap: 1.5%;                       /* espacio flexible */
+    margin-bottom: 20px;
+    width: 100%;                   /* que ocupen todo el ancho del contenedor */
+    max-width: 100%;            /* ancho máximo para que no se estiren demasiado */
+}
+
+.card {
+    flex: 1;                          /* que ocupen igual espacio */
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 150px; /* altura fija para que todas queden iguales */
+    display: flex;
+    flex-direction: column;
+}
+
+.card h2 {
+    font-size: 22px;
+    margin: 0;
+    color: #333;
+}
+
+.card span {
+    font-size: 16px;
+    color: #666;
+}
+.cantidad-citas {
+    text-align: start;
+    background-color: #015f15;  /* perfecto */
+    color: white;
+    border-radius: 10px;               /* mejor si le ponés color blanco */
+}
+.cantidad-citas  span {
+    font-size: 16px;
+    color: #fff; /* blanco */
+    font-weight: bold;
+}
+/* contenedor de items */
+.info-clinica {
+    background-color: #ecd985;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.info-clinica {
+    background-color: #ecd985;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.info-clinica-columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;   /* espacio entre columnas */
+}
+
+.info-col {
+    flex: 1;  /* que ambas columnas tengan mismo ancho */
+}
+
+.info-col span {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.info-col h2 {
+    font-size: 18px;
+    color: #333;
+    margin: 0 0 12px 0;
+}
