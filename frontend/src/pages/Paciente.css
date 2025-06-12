@@ -1,185 +1,203 @@
+
+
+/* Layout principal */
 .agregar-cita-container {
     display: flex;
+    height: 75vh;   /* ocupa toda la pantalla */
+    padding: 1%;
     gap: 1%;
-    padding: 1%;
-    height: 100%;
+    font-family: 'Poppins', sans-serif;
+    overflow: scroll;
 }
 
-
+/* Panel izquierdo (lista de pacientes) */
 .panel-izquierdo {
-    
     width: 20%;
-    height: 100%;
     background-color: #f9f9f9;
     border-radius: 10px;
     padding: 1%;
-    font-size: 14px;
-    color: #333;
-    max-height: 100%;  /* el máximo que vos quieras */
-    overflow-y: auto; 
-}
-.panel-derecho {
-    width: 75%;
-    max-width: 85%;
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    flex-grow: 1;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    padding: 1%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-/* layout botones panel derecho */
+.panel-izquierdo h6 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.panel-izquierdo ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.panel-izquierdo ul li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    color: #333;
+}
+
+.panel-izquierdo ul li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Panel derecho */
+.panel-derecho {
+    width: 80%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Botones de acción */
 .container-btn {
     display: flex;
-    justify-content: end;
-    flex-wrap: wrap;  /* para que si no entra en ancho, baje a la siguiente línea */
-    gap: 3%;
-    
-    width: 80%;
-    margin-left: auto;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 10px;
 }
+
 .container-btn button {
-    padding: 12px 20px;           /* un poco más de padding horizontal */
-    background-color: #f6e49c;    /* como tu imagen (amarillo suave) */
-    color: #3e7a6e;               /* color de texto como en tu imagen */
-    border: none;
-    border-radius: 10px;          /* redondeado como en tu imagen */
-    font-size: 15px;
+    background-color: #f6e49c;
+    color: #3e7a6e;
     font-weight: bold;
-    display: flex;                /* 🟢 para que el icono + texto estén alineados */
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    display: flex;
     align-items: center;
-    gap: 20px;                     /* espacio entre icono y texto */
+    gap: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 .container-btn button:hover {
-    background-color: darkgreen;
+    background-color: #ecd985;
 }
 
-/* apartado datos personales */
-.datos-personales{
-    margin-left: 0.8%;
-    width: 99%;
-    height: 30%;
-    max-height: 30%;
+/* Paciente seleccionado */
+.paciente h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #333;
+}
+.contenedor{
+    margin-top: -50px;
+}
+/* Datos personales y citas */
+.datos-personales {
     background-color: #f6e49c;
     border-radius: 15px;
     padding: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
 }
-.datos-personales h4{
-    padding: 10px;
-    border-bottom: 2px solid #e0c973;
-    margin-bottom: 10px;
+
+.datos-personales h4 {
     font-size: 18px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #e0c973;
+    padding-bottom: 8px;
     color: #333;
 }
-/* Datos Table */
+
+/* Tablas */
 .datos-personales table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
 }
-.datos-personales thead th {
+
+.datos-personales th {
     background-color: #ecd985;
     padding: 10px;
     border-bottom: 2px solid #d6c36d;
     font-size: 14px;
     color: #333;
 }
-.datos-personales tbody td {
+
+.datos-personales td {
     padding: 10px;
     border-bottom: 1px solid #f0e4b6;
     font-size: 14px;
     color: #555;
 }
+
 .datos-personales tbody tr:last-child td {
     border-bottom: none;
 }
 
-/* Citas anteriores */
+/* Citas anteriores con scroll */
+.citas-anteriores {
+    max-height: 200px;
+    overflow-y: auto;
+}
 
-
-/* 3ra fila con 3 cards */
-
+/* Cards */
 .row-cards {
     display: flex;
-    justify-content: space-between;  /* espacio entre ellas */
-    gap: 1.5%;                       /* espacio flexible */
-    margin-bottom: 20px;
-    width: 100%;                   /* que ocupen todo el ancho del contenedor */
-    max-width: 100%;            /* ancho máximo para que no se estiren demasiado */
+    justify-content: space-between;
+    gap: 1.5%;
+    width: 100%;
 }
 
-.card {
-    flex: 1;                          /* que ocupen igual espacio */
-    background-color: #f9f9f9;
-    border-radius: 15px;
+.row-cards .card {
+    flex: 1;
+    height: 150px;
     padding: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 150px; /* altura fija para que todas queden iguales */
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.card h2 {
-    font-size: 22px;
-    margin: 0;
-    color: #333;
-}
-
-.card span {
-    font-size: 16px;
-    color: #666;
-}
-.cantidad-citas {
-    text-align: start;
-    background-color: #015f15;  /* perfecto */
+.card.cantidad-citas {
+    background-color: #015f15;
     color: white;
-    border-radius: 10px;               /* mejor si le ponés color blanco */
+    text-align: start;
 }
-.cantidad-citas  span {
-    font-size: 16px;
-    color: #fff; /* blanco */
+
+.card.cantidad-citas span {
+    font-size: 22px;
     font-weight: bold;
 }
-/* contenedor de items */
-.info-clinica {
-    background-color: #ecd985;
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 
-.info-clinica {
+.card.info-clinica {
     background-color: #ecd985;
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow: hidden;
-    word-wrap: break-word;
 }
 
 .info-clinica-columns {
     display: flex;
     justify-content: space-between;
-    gap: 20px;   /* espacio entre columnas */
+    gap: 20px;
 }
 
 .info-col {
-    flex: 1;  /* que ambas columnas tengan mismo ancho */
+    flex: 1;
 }
 
 .info-col span {
-    display: block;
     font-size: 14px;
     color: #555;
+    display: block;
     margin-bottom: 4px;
 }
 
@@ -187,4 +205,88 @@
     font-size: 18px;
     color: #333;
     margin: 0 0 12px 0;
+}
+
+/* Menú desplegable para botones de ajustes: */
+.dropdown-ajustes {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-left: auto;
+}
+
+.dropdown-toggle {
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.dropdown-toggle:hover {
+    transform: rotate(30deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background-color: #fff8dc;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px;
+    min-width: auto;
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    
+    /* Este es el cambio: lo ponemos en horizontal */
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-item {
+    padding: 10px 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column; /* para que icono arriba y texto abajo, o cambiás a row si querés ícono + texto en línea */
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-weight: bold;
+    color: #444;
+    background-color: white;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    min-width: 80px;
+}.dropdown-item {
+    padding: 10px 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column; /* para que icono arriba y texto abajo, o cambiás a row si querés ícono + texto en línea */
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-weight: bold;
+    color: #444;
+    background-color: white;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    min-width: 80px;
+}
+
+.dropdown-item:hover {
+    background-color: #f7e7a9;
 }

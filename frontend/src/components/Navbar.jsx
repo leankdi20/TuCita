@@ -1,6 +1,23 @@
 import userIcon from '../assets/user.png'; 
 import './Navbar.css'
+import React, { useState, useEffect,useRef, use  } from 'react';
+
+
 export default function Navbar() {
+    const [user, stUser] = useState(null);
+
+    useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+        
+        if (storedUser) {
+            const parsedUser = JSON.parse(storedUser);
+            stUser(parsedUser);
+        }
+        
+    }, []);
+
+    
+
     return (
         <header className="header">
         <input type="text" placeholder="Buscar..." className="search-input" />
@@ -8,8 +25,10 @@ export default function Navbar() {
             <img src={userIcon} alt="Usuario" className="user-avatar" />
             
             <div>
-            <strong>Totok Mireia</strong>
-            <p>mireiatotok@mail.com</p>
+                <strong>
+                    {user && user.usuario ? `${user.usuario.nombre} ${user.usuario.apellido}` : 'Usuario no autenticado'}
+                </strong>
+            <p>{user && user.usuario ? `${user.usuario.correo}`: 'Correo no encontrado' }</p>
             </div>
         </div>
         </header>

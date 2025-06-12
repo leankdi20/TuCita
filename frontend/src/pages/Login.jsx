@@ -24,6 +24,13 @@ export default function Login() {
             });
             localStorage.setItem('user', JSON.stringify(response.data));
             setAuthToken(response.data.token);
+            const userResponse = await axiosInstance.get('usuarios/');
+            // Encontrar el usuario actual por correo
+            const usuarioActual = userResponse.data.find(u => u.correo === correo);
+            localStorage.setItem('user', JSON.stringify({
+                token: response.data.token,
+                usuario: usuarioActual
+            }));
             navigate('/dashboard');
             } catch (error) {
             setError('Credenciales incorrectas. Por favor, inténtalo de nuevo.');

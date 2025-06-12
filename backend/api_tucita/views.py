@@ -42,6 +42,13 @@ class CitaViewSet(viewsets.ModelViewSet):
             return CitaCreateSerializer  # En POST usás solo IDs
         return CitaSerializer  
 
+    def get_queryset(self):
+        queryset = Cita.objects.all()
+        paciente_id = self.request.query_params.get('paciente')
+        if paciente_id:
+            queryset = queryset.filter(paciente_id=paciente_id)
+        return queryset
+
 
     
         

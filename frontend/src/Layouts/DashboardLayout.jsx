@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Outlet, Link, useNavigate } from 'react-router-dom';
+import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
+
 
 
 import Navbar from '../components/Navbar';
@@ -19,6 +20,7 @@ import imgpacienteV from '../assets/pacienteV.png';
 export default function DashboardLayout({ children }) {
     const [active, setActive] = useState('dashboard');
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogout = () => {
         //Borramos el usuario o el token que deja entrar al dashboard
@@ -33,6 +35,18 @@ export default function DashboardLayout({ children }) {
         navigate('/', { replace: true });
     }
     }, []);
+        // 👇 Nuevo useEffect para sincronizar active con la ruta
+    useEffect(() => {
+        if (location.pathname.includes('/dashboard/paciente')) {
+            setActive('paciente');
+        } else if (location.pathname.includes('/dashboard/equipo')) {
+            setActive('equipo');
+        } else if (location.pathname.includes('/dashboard/calendario')) {
+            setActive('calendario');
+        } else if (location.pathname.includes('/dashboard')) {
+            setActive('dashboard');
+        }
+    }, [location.pathname]);
 
     return (
         <div className="dashboard-layout">
