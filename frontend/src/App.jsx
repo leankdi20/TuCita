@@ -10,6 +10,8 @@ import Calendario from './pages/Calendario'
 import Equipo from './pages/Equipo'
 import Paciente from './pages/Paciente'
 import AgregarCita from './pages/AgregarCita';
+import ObservacionesCitas from './pages/ObservacionesCitas';
+import ArchivoPaciente from './pages/ArchivoPaciente';
 
 
 
@@ -28,7 +30,10 @@ function App() {
           <Route path="/dashboard/calendario/agregar-cita" element={<AgregarCita />} />
           <Route path="equipo" element={<Equipo />} /> 
           <Route path="paciente" element={<Paciente />} /> 
+          <Route path="/dashboard/cita/:id/observaciones" element={<ObservacionesCitas />} />
+          
         </Route>
+        <Route path="/archivos-paciente/:idPaciente" element={<ArchivoPaciente />} />
         
       </Routes>
     </BrowserRouter>

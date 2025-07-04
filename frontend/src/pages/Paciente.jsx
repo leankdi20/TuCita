@@ -5,6 +5,8 @@ import {FaCog, FaUserPlus, FaUserEdit, FaCalendarPlus, FaClipboardList } from 'r
 import axiosInstance from '../api/axiosInstance';
 import { HiUserCircle } from "react-icons/hi2";
 import { FaRegImage } from 'react-icons/fa';
+import { useNavigate,useLocation } from 'react-router-dom';
+
 
 import BotonesPaciente from '../components/BotonesPaciente';
 
@@ -19,12 +21,16 @@ function formatFecha(fechaString) {
 }
 
 export default function Paciente() {
-
+    const navigate = useNavigate();
+    const location = useLocation();
     const [pacientes, setPacientes] = useState([]);
     const [pacienteSeleccionado, setPacienteSeleccionado] = useState(null);
     const [citasPaciente, setCitasPaciente] = useState([]);
     const pacienteActual = pacientes.find(p => p.id === pacienteSeleccionado);
     const [archivosPaciente, setArchivosPaciente] = useState([]);
+    const [archivosPorCita, setArchivosPorCita] = useState({});
+    
+
     const [menuOpen, setMenuOpen] = useState(false);
     const dropdownRef = useRef(null);
     const ultimaCitaOrdenada = citasPaciente.length > 0 
@@ -71,7 +77,7 @@ export default function Paciente() {
                 document.removeEventListener('mousedown', handleClickOutside);
             };
 
-    }, []);
+    }, [location]);
 
     
     
@@ -82,27 +88,30 @@ export default function Paciente() {
                 <ul>
                     {pacientes.map(paciente =>(
                         <li key={paciente.id}><HiUserCircle color="green" 
-                        onClick={() => {
+                            onClick={() => {
                                 setPacienteSeleccionado(paciente.id);
+                                setCitasPaciente([]);
+                                setArchivosPorCita([]);
 
-                                // además traés las citas de este paciente:
+                                // Traer citas del paciente
                                 axiosInstance.get('/citas/', { params: { paciente: paciente.id } })
-                                    .then(response => setCitasPaciente(response.data))
-                                    .catch(error => {
-                                        console.error("Error al traer citas del paciente:", error);
-                                        setCitasPaciente([]);
-                                });
-                                axiosInstance.get('/archivos/')
                                     .then(response => {
-                                        const archivosFiltrados = response.data.filter(archivo => 
-                                            archivo.diagnostico.cita.paciente.id === paciente.id
-                                        );
-                                        setArchivosPaciente(archivosFiltrados);
+                                        setCitasPaciente(response.data);
                                     })
                                     .catch(error => {
-                                        console.error("Error al traer archivos del paciente:", error);
-                                        setArchivosPaciente([]);
-                                });
+                                        console.error("Error al traer citas:", error);
+                                        setCitasPaciente([]);
+                                    });
+
+                                // Traer archivos del paciente directamente
+                                axiosInstance.get('/archivos/', { params: { paciente: paciente.id } })
+                                    .then(response => {
+                                        setArchivosPorCita(response.data); // Si esperás un array
+                                    })
+                                    .catch(error => {
+                                        console.error("Error al traer archivos:", error);
+                                        setArchivosPorCita([]);
+                                    });
                             }}
                         style={{ cursor: 'pointer' }}  
 
@@ -194,14 +203,15 @@ export default function Paciente() {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {citasPaciente.map(cita => (
-                                                    <tr key={cita.id}>
+                                            {citasPaciente.map(cita => (
+                                                <tr key={cita.id}>
                                                     <td>{formatFecha(cita.fecha)}</td>
                                                     <td>{cita.profesional.usuario.nombre} {cita.profesional.usuario.apellido}</td>
                                                     <td>{cita.motivo_consulta}</td>
                                                     <td>{cita.observaciones}</td>
-                                                    </tr>
-                                                ))}
+                                                    
+                                                </tr>
+                                            ))}
                                             </tbody>
                                         </table>
                                     </div>
@@ -212,29 +222,32 @@ export default function Paciente() {
                                         <table>
                                             <thead>
                                                 <tr>
-                                                    <th>Fecha</th>
                                                     <th>Documento</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {archivosPaciente.length > 0 ? (
-                                                    archivosPaciente.map(archivo => (
-                                                        <tr key={archivo.id}>
-                                                            <td>{formatFecha(archivo.diagnostico.fecha_diagnostico)}</td>
-                                                            <td>
-                                                                <a href={archivo.archivo_adjunto} target="_blank" rel="noopener noreferrer">
-                                                                    <FaRegImage color="#1976d2" /> {archivo.archivo_adjunto.split('/').pop()}
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    ))
-                                                ) : (
-                                                    <tr>
-                                                        <td colSpan="2" style={{ textAlign: 'center', color: '#666', fontStyle: 'italic' }}>
-                                                            No hay archivos para este paciente.
-                                                        </td>
-                                                    </tr>
-                                                )}
+                                                <tr>
+                                                    <button
+                                                        onClick={() => {
+                                                            if (pacienteActual) {
+                                                                navigate(`/archivos-paciente/${pacienteActual.id}`);
+                                                            } else {
+                                                                alert('Seleccione un paciente primero.');
+                                                            }
+                                                        }}
+                                                        style={{
+                                                            backgroundColor: '#1976d2',
+                                                            color: 'white',
+                                                            border: 'none',
+                                                            padding: '5px 10px',
+                                                            borderRadius: '4px',
+                                                            cursor: 'pointer'
+                                                        }}
+                                                    >
+                                                        Mostrar archivos
+                                                    </button>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>

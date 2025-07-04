@@ -1,6 +1,6 @@
 import requests
 from core.models import Usuario
-from api_tucita.models import Profesional, Paciente, Cita, Diagnostico, Archivo
+from api_tucita.models import Profesional, Paciente, Cita,Archivo
 from django.utils import timezone
 from datetime import time
 
@@ -63,18 +63,7 @@ def agregar_dato():
             enviar_recordatorio=True
         )
 
-        # Paso 5: Crear diagnóstico
-        diagnostico = Diagnostico.objects.create(
-            cita=cita,
-            descripcion='',
-            tratamiento_recomendado=''
-        )
 
-        # Paso 6: Asociar archivo (mock - solo ruta, sin archivo real)
-        Archivo.objects.create(
-            diagnostico=diagnostico,
-            archivo_adjunto='archivos_diagnosticos/muela.jpeg'  # asegúrate que este archivo exista si lo necesitás
-        )
 
         print("✅ Datos agregados correctamente.")
 

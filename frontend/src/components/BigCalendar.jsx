@@ -11,6 +11,7 @@ import getDay from 'date-fns/getDay';
 import es from 'date-fns/locale/es';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
 
 import moment from 'moment';
 
@@ -38,6 +39,8 @@ const localizer = dateFnsLocalizer({
 
 
 export default function BigCalendar({refreshTrigger, filters }){
+    const navigate = useNavigate();
+
     const [eventos, setEventos] = useState([])
     const [tooltip, setTooltip] = useState({ visible: false, content: '', x: 0, y: 0 });
     const [vistaActual, setVistaActual] = useState('week');
@@ -107,6 +110,7 @@ export default function BigCalendar({refreshTrigger, filters }){
             setTooltip({
                 visible: true,
                 content: `
+                <strong>id:</strong> ${event.id}<br/>
                 <strong>Paciente:</strong> ${event.title}<br/>
                 <strong>Atención:</strong> ${event.motivo}<br/>
                 <strong>Profesional:</strong> ${event.profesional}<br/>
@@ -127,6 +131,8 @@ export default function BigCalendar({refreshTrigger, filters }){
                     className="evento-calendario"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
+                    onClick={() => navigate(`/dashboard/cita/${event.id}/observaciones`)}
+                    style={{ cursor: 'pointer' }}
                 >
                     <p>{event.title}</p>
                 </div>

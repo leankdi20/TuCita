@@ -14,7 +14,10 @@ export default function AgregarCita() {
         '10:00', '10:30', '11:00', '11:30',
         '12:00', '12:30', '13:00', '13:30',
         '14:00', '14:30', '15:00', '15:30',
-        '16:00', '16:30', '17:00', '17:30'
+        '16:00', '16:30', '17:00', '17:30',
+        '18:00', '18:30', '19:00', '19:30',
+        '20:00', '20:30', '21:00', '21:30',
+        '22:00',
     ];
     const [formData, setFormData] = useState({
         pacienteId: '',
@@ -29,6 +32,24 @@ export default function AgregarCita() {
     const [citasDia, setCitasDia] = useState([]);
     const [pacienteSeleccionado, setPacienteSeleccionado] = useState(null);
     const [ultimaCitaPaciente, setUltimaCitaPaciente] = useState(null);
+  
+
+    const motivos = [
+            "Caries",
+            "Consulta general",
+            "Limpieza dental",
+            "Endodoncia",
+            "Extracción dental",
+            "Atención de urgencia",
+            "Blanqueamiento dental",
+            "Ortodoncia",
+            "Prótesis dental",
+            "Consulta por dolor",
+            "Control de tratamiento",
+            "Consulta pediátrica",
+            "Consulta estética",
+        ];
+
 
     const bloquesDisponiblesFin = () => {
         const indexInicio = bloques.indexOf(formData.hora_inicio);
@@ -297,11 +318,20 @@ export default function AgregarCita() {
                         </div>
                         <div className="campo-form">
                             <label>Motivo / Atención</label>
-                            <textarea
+                            <select
                                 value={formData.motivo_consulta}
-                                onChange={(e) => setFormData({ ...formData, motivo_consulta: e.target.value })}
+                                onChange={(e) =>
+                                    setFormData({ ...formData, motivo_consulta: e.target.value })
+                                }
                                 required
-                            ></textarea>
+                            >
+                                <option value="">Seleccione un motivo</option>
+                                {motivos.map((motivo, i) => (
+                                    <option key={i} value={motivo}>
+                                        {motivo}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                     </div>
 
