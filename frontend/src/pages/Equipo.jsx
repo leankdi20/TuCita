@@ -29,14 +29,22 @@ export default function Equipo() {
         formData.append('foto', file);
 
         try {
-        await axiosInstance.patch(`profesionales/${miembroId}/`, formData, {
-            headers: {
-            'Content-Type': 'multipart/form-data',
-            },
-        });
-        fetchMiembros(); // recargar lista
+            const response = await axiosInstance.patch(`profesionales/${miembroId}/`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            // 🔄 Actualizá el localStorage si es el usuario logueado
+            const userStored = JSON.parse(localStorage.getItem('user'));
+            if (userStored?.id === miembroId) {
+                const updatedUser = { ...userStored, foto: response.data.foto };
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+            }
+
+            fetchMiembros(); // recargar la lista
         } catch (error) {
-        console.error('Error al subir la foto:', error);
+            console.error('Error al subir la foto:', error);
         }
     };
 

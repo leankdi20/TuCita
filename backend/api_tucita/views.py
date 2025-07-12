@@ -34,6 +34,13 @@ class ProfesionalViewSet(viewsets.ModelViewSet):
         if self.action in ['create', 'update', 'partial_update']:
             return ProfesionalCreateSerializer
         return ProfesionalSerializer
+    
+    def get_queryset(self):
+        queryset = Profesional.objects.select_related('usuario').all()
+        usuario_id = self.request.query_params.get('usuario_id')
+        if usuario_id:
+            queryset = queryset.filter(usuario_id=usuario_id)
+        return queryset
 
 
 
