@@ -137,15 +137,14 @@ export default function Paciente() {
                         }}>
                             <FaUserPlus color="#1976d2" /> Crear paciente
                         </div>
-                        <div className="dropdown-item" onClick={() => { setMenuOpen(false); alert('Editar datos'); }}>
-                            <FaUserEdit color="#388e3c" /> Editar datos
-                        </div>
-                        <div className="dropdown-item" onClick={() => { setMenuOpen(false); alert('Nueva cita'); }}>
+
+                        <div className="dropdown-item" onClick={() => {
+                            setMenuOpen(false);
+                            navigate('/dashboard/calendario/agregar-cita');
+                        }}>
                             <FaCalendarPlus color="#fbc02d" /> Nueva cita
                         </div>
-                        <div className="dropdown-item" onClick={() => { setMenuOpen(false); alert('Observaciones'); }}>
-                            <FaClipboardList color="#d32f2f" /> Observaciones
-                        </div>
+
                     </div>
                 </div>
 
